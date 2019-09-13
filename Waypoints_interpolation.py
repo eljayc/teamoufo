@@ -39,4 +39,7 @@ plt.show()
 # I would first look at the shortest time between 3 points where the third point is in the same location as the first
 # The shortest distance and time would be a straight line until the vehicle reaches the tangent on the minimum turning circle centred at a radius-length away from the 2nd point in the direction of half the distance between the 1nd point and the 3rd point (in this case, the same direction as 1st and 3rd are at the same location)
 
+# Obviously this won't work for further waypoints within the minimum turning circle, so an additional waypoint must be added before the 2nd waypoint such that the angle of attack can be adjusted
+
+
 # I will have a try at this problem this week and see if I can can get something to work with matplotlib
