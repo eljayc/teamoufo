@@ -1,0 +1,24 @@
+secret Word = "TeamoUFO"
+Guess = ""
+Guess_Count = 0 
+Guess_limit = 3 
+out_of_guesses = False 
+
+print("Welcome to Eamon's Gussing Game")
+print("The aim of the game is to guess the word im thinking of")
+print(" you get three guesses to guess it right")
+print("I will give you one hint")
+print(*It is a IMechE UAS Team")
+print("GOOD LUCK")
+
+
+while guess != secret word and not (out_of_guesses):
+  if guess_count < guess_limit:
+    guess = input("Enter Guess Here")
+    guess_count += 1 
+  else:
+    out_of_Guesses = true
+  if out_of_guesses:
+    print("Hard Luck Try again next time")
+  else:
+    Print("YOU WIN Thanks for playing")
