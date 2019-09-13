@@ -1,32 +1,113 @@
+
+// Anything following a 'hashtag', #, is a command to the compiler.
+// In this case, it is telling the compiler to include a file, 'stdio.h', and 'math.h'.
+// These files are built within the compiler directory somewhere and are useful for doing many things.
+// They contain many functions, such as 'printf', which is explained somewhere below.
+
+
+// Writing '#include <stdio.h>' is the same as writing out the entire contents of the file 'stdio.h' and putting it into this file.
 #include<stdio.h>
 #include<math.h>
+
+
+
 int main()
 {
-    float r,xx[5],xy[5],yy[5],nr=0,dr_1=0,dr_2=0,dr_3=0,dr=0;
-    float x[5]={1,2,3,4,5},y[5]={15,26,32,45,60}; //this declares the data sets
-    float sum_y=0,sum_yy=0,sum_xy=0,sum_x=0,sum_xx=0;
-    int i,n=5; //n represents the number of data points in each data set
-    for(i=0;i<n;i++)
-    {
-     xx[i]=x[i]*x[i];
-     yy[i]=y[i]*y[i];
-    }
-    for(i=0;i<n;i++)
-    {
-     sum_x+=x[i];
-     sum_y+=y[i];
-     sum_xx+= xx[i];
-     sum_yy+=yy[i];
-     sum_xy+= x[i]*y[i];
-    }                             //**************************************
-    nr=(n*sum_xy)-(sum_x*sum_y);  //* these lines represent              *
-    float sum_x2=sum_x*sum_x;     //* the sequence of calculations       *
-    float sum_y2=sum_y*sum_y;     //*  in the formula for the            *
-    dr_1=(n*sum_xx)-sum_x2;       //*  Pearson correlation coefficient   *
-    dr_2=(n*sum_yy)-sum_y2;       //**************************************
-    dr_3=dr_1*dr_2;
-    dr=sqrt(dr_3);
-    r=(nr/dr);
-    printf("Total Numbers in each dataset:%d\nCorrelation Coefficient:%.2f",n,r);
-    return 0;
+
+	// The first line of code gives us a lot of numbers to work with.
+	float r, xx[5], xy[5], yy[5], nr = 0, dr_1 = 0, dr_2 = 0, dr_3 = 0, dr = 0;
+
+	// The square brackets indicate an 'array' of numbers. In this case, there are two 'arrays' of numbers. One called 'x' and one called 'y'.
+	// Array 'x' contains 5 numbers. Array 'y' also contains 5 numbers, listed below.
+	float x[5] = { 1,2,3,4,5 }, y[5] = { 15,26,32,45,60 }; //this declares the data sets
+
+	// Some more numbers to work with here.
+	// NOTE: The word 'float' tells us that each value in the array is a 'floating point' number (in other words, a decimal number)
+	// The word float can be replaced with other number types too.
+	// For example, 'int' (integer), 'double' (larger decimal number), 'signed int' (integer that can have a minus sign) etc. if we want.
+	// For now, we'll use float
+	float sum_y = 0, sum_yy = 0, sum_xy = 0, sum_x = 0, sum_xx = 0;
+
+	// 'int' here declares 2 integers. One called called 'i', and one called 'n', which is assigned the value of 5.
+	int i, n = 5; //n represents the number of data points in each data set
+
+
+	// This is a 'for' loop.
+	// It basically reruns the piece of code between curly brackets as long as a condition is still true
+	// It comes in 3 parts:
+	//
+	// i = 0
+	// The 'int' integer value that we called 'i' previously is assigned the value '0' at the beginning. This code is only ran once in the 'for' loop.
+	//
+	// i < n
+	// The second part of the 'for' loop is always the condition which is checked at the beginning of each 'loop'.
+	// If the condition is true, the code in the curly brackets will run and the condition will be checked again afterwards.
+	// If the condition is false, then all code in curly brackets is skipped and the program continues.
+	//
+	// i++
+	// After the curly brackets have finished, this code runs. The two plus signs '++' after the variable 'i' will increase the value of 'i' by exactly 1, which makes it a sort of counter which keeps increasing by 1 every time the 'for' loop is run
+
+	for (i = 0; i < n; i++)
+	{
+
+		// Because n = 5, this code will run 5 times (until 'i' is greater than 'n')
+		// the 'i' in square brackets is replaced with the number it equals during each 'for' loop repetition.
+		// For example, the first iteration, the code will be:
+		// xx[0] = x[0] * x[0];
+		// yy[0] = y[0] * y[0];
+		// Then, the next repetition will be:
+		// xx[1] = x[1] * x[1];
+		// yy[1] = y[1] * y[1];
+		// etc.
+		xx[i] = x[i] * x[i];
+		yy[i] = y[i] * y[i];
+
+		// Think of the number inside the square brackets as the 'address' for the data within the array.
+		// The addresses in arrays always start at 0.
+		// If I have an array of 60 number, and I want to assign the last number a value of '1000', then I would write:
+		// arrayname[59] = 1000;
+
+	}
+
+	// So essentially the above 'for' loop squares all numbers in array 'x' and puts the results in array 'xx'
+	// (and of course same for 'yy')
+
+
+	for (i = 0; i < n; i++)
+	{
+		sum_x += x[i];
+		// is basically the same as:
+		// sum_x = sum_x + x[i].
+		// The '+=' sign is just a shortcut for adding the right hand side to the left hand side, then storing the new value in the left hand side variable.
+
+		sum_y += y[i];
+		sum_xx += xx[i];
+		sum_yy += yy[i];
+		sum_xy += x[i] * y[i];
+	}                             //**************************************
+	nr = (n * sum_xy) - (sum_x * sum_y);  //* these lines represent              *
+	float sum_x2 = sum_x * sum_x;     //* the sequence of calculations       *
+	float sum_y2 = sum_y * sum_y;     //*  in the formula for the            *
+	dr_1 = (n * sum_xx) - sum_x2;       //*  Pearson correlation coefficient   *
+	dr_2 = (n * sum_yy) - sum_y2;       //**************************************
+	dr_3 = dr_1 * dr_2;
+	dr = sqrt(dr_3);
+	r = (nr / dr);
+
+	// Lots of arithmetic above, basically just adding (+), subtracting (-), multiplying '*' and dividing '/' various numbers according to the formula for the Pearson Correlation Coefficient for 2 sets of numbers.
+
+
+	printf("Total Numbers in each dataset:%d\nCorrelation Coefficient:%.6f", n, r);
+	// 'printf' is basically a function in C specifically which prints a line of text to the screen.
+	// The two brackets contain all the inputs to the function, separated by commas.
+	// The first input is the string of text which we want to display. Any decimal numbers from the code that we want to display must be written as '%d'.
+	// Any floating point numbers must be written as '%.6f', where the '.6' is the number of decimal places.
+	// The second input, 'n', is the name of the first variable to be included in the text (in this case %d)
+	// The third input, 'r', is the name of the second variable to be included in the text (in this case %.2r)
+
+
+	return 0;
+	// The reason for the above 'return' statement is that basically every function in C returns a value, even the main function, which in this case is an 'int'.
+	// For a C program, '0' usually indicates success, and any other number represents an error code.
+	// To be fair at this stage that is completely useless information! But as you begin to develop more C programs it becomes apparent why the main function returns a value.
 }
